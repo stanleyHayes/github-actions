@@ -23,7 +23,7 @@ jobs:
   mac-echo:
     runs-on: macos-latest
     steps:
-      name: Show OS
-      run: |
-        echo "This job is running on a MacOS Running"
-        echo $RUNNER_OS
+      - name: Show OS
+        run: |
+          echo "This job is running on a MacOS Running"
+          echo $RUNNER_OS
