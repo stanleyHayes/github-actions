@@ -17,3 +17,6 @@ jobs:
 
       - name: Install Dependencies
         run: go mod download
+
+      - name: Run Unit Tests
+        run: go test ./...
