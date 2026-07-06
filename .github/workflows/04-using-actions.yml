@@ -1,0 +1,22 @@
+name: 04 - Using Actions
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v7
+
+      - name: Setup Golang
+        uses: actions/setup-go@v6.5.0
+        with:
+          go-version: '1.26'
+
+      - name: Install Dependencies
+        run: go mod download
+
+      - name: Run Unit Tests
+        run: go test ./...
