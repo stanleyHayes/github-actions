@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 
 env:
-  MY_VAR="Hello, World!"
+  MY_VAR: 'Hello, World!'
 
 jobs:
   echo-data:
