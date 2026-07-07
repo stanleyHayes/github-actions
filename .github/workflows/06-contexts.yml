@@ -1,15 +1,28 @@
 name: 06 - Contexts
 
+# run-name: My custom workflow run name - ${{ runner.os }}
+run-name: 06 - Contexts | DEBUG - $ {{ inputs.debug }}
+
 on:
   push:
   workflow_dispatch:
+    inputs:
+      debug:
+        type: boolean
+        default: false
 
 env:
+  MY_WORKFLOW_VAR: 'workflow'
+  MY_OVERWRITTEN_VAR: 'workflow'
   MY_VAR: 'Hello, World!'
 
 jobs:
   echo-data:
     runs-on: ubuntu-latest
+    env:
+      MY_JOB_VAR: 'job'
+      MY_OVERWRITTEN_VAR: 'job'
+
     steps:
       - name: Display Information
         run: |
@@ -22,3 +35,15 @@ jobs:
           echo "Run Number: ${{github.run_number}}"
       - name: Retrieval Variable
         run: echo "$MY_VAR"
+
+      - name: Print Env Variables
+        env:
+          MY_OVERWRITTEN_VAR: 'step'
+        run: |
+          echo "Workflow env: ${{env.MY_WORKFLOW_VAR}}"
+          echo "Overwritten env: ${{env.MY_OVERWRITTEN_VAR}}"
+
+      - name: Addition Env Variables
+        run: |
+          echo "Workflow env: ${{env.MY_WORKFLOW_VAR}}"
+          echo "Overwritten env: ${{env.MY_OVERWRITTEN_VAR}}"

@@ -1,7 +1,18 @@
 name: 04 - Using Actions
 
+# run-name: My custom workflow run name - ${{ runner.os }}
+run-name: 06 - Contexts | DEBUG - $ {{ inputs.debug }}
+
 on:
   workflow_dispatch:
+    inputs:
+      debug:
+        type: boolean
+        default: false
+
+env:
+  MY_WORKFLOW_VAR: 'workflow'
+  MY_OVERWRITTEN_VAR: 'workflow'
 
 jobs:
   build:
